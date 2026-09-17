@@ -1,6 +1,5 @@
-from game import Game
+import asyncio
 import pygame
-import os
 
 play_button = pygame.image.load("./sprites/play_button.png")
 
@@ -14,22 +13,23 @@ class MainMenu:
         self.button = (self.width/2 - play_button.get_width()/2, 350, play_button.get_width(), play_button.get_height())
         self.title = pygame.transform.scale(pygame.image.load("./sprites/title.png"), (500, 200))
 
-    def run(self):
-        menuRun = True
-        
-        while menuRun:
+    async def run(self):
+        clock = pygame.time.Clock()
+
+        while True:
+            clock.tick(60)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    menuRun = False
+                    return "quit"
                 if event.type == pygame.MOUSEBUTTONUP:
                     x, y = pygame.mouse.get_pos()
                     if self.button[0] <= x <= self.button[0] + self.button[2]:
                         if self.button[1] <= y <= self.button[1] + self.button[3]:
-                            menuRun = False
-                            game = Game(self.win)
-                            game.run()
+                            return "game"
             self.draw_menu()
-        pygame.quit()
+            # Pygbag needs the event loop to yield once per frame so the
+            # browser can draw the canvas and process input.
+            await asyncio.sleep(0)
     
     def draw_menu(self):
         self.win.blit(self.background, (0,0))

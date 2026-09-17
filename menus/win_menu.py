@@ -1,6 +1,5 @@
-from game import Game
+import asyncio
 import pygame
-import os
 pygame.font.init()
 
 
@@ -15,24 +14,23 @@ class WinMenu:
         self.background = pygame.image.load("./sprites/background.png")
         self.background = pygame.transform.scale(self.background, (self.width, self.height))
         self.button = (self.width/2 - play_button.get_width()/2, 350, play_button.get_width(), play_button.get_height())
-        self.font = pygame.font.SysFont("comicsans", 100)
+        self.font = pygame.font.Font(None, 100)
 
-    def run(self):
-        menuRun = True
-        
-        while menuRun:
+    async def run(self):
+        clock = pygame.time.Clock()
+
+        while True:
+            clock.tick(60)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    menuRun = False
+                    return "quit"
                 if event.type == pygame.MOUSEBUTTONUP:
                     x, y = pygame.mouse.get_pos()
                     if self.button[0] <= x <= self.button[0] + self.button[2]:
                         if self.button[1] <= y <= self.button[1] + self.button[3]:
-                            menuRun = False
-                            game = Game(self.win)
-                            game.run()
+                            return "game"
             self.draw_menu()
-        pygame.quit()
+            await asyncio.sleep(0)
     
     def draw_menu(self):
         text = self.font.render("You Win!", 1, (255,255,255))
