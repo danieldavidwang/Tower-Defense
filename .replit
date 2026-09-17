@@ -1,4 +1,5 @@
 entrypoint = "run.py"
+modules = ["python-3.12"]
 run = "python3 run.py"
 
 [packager]
