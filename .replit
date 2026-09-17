@@ -11,16 +11,24 @@ packageSearch = true
 enabledForHosting = false
 
 [workflows]
-runButton = "Run Tower Defense"
+runButton = "Project"
 
 [[workflows.workflow]]
-name = "Run Tower Defense"
+name = "Project"
+mode = "parallel"
 author = "agent"
-mode = "sequential"
 
 [[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "python3 run.py"
+task = "workflow.run"
+args = "Start Tower Defense"
+
+[[workflows.workflow]]
+name = "Start Tower Defense"
+author = "agent"
 
 [workflows.workflow.metadata]
 outputType = "vnc"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "pkill -f 'Xvnc :1' 2>/dev/null || true; pkill -f 'rfbproxy --address 0.0.0.0:5900' 2>/dev/null || true; Xvnc :1 -rfbport=5901 -SecurityTypes=None -BlacklistTimeout=0 -BlacklistThreshold=1000000000 -geometry 900x700 -localhost >/tmp/tower-defense-xvnc.log 2>&1 & rfbproxy --address 0.0.0.0:5900 --rfb-server 127.0.0.1:5901 >/tmp/tower-defense-rfbproxy.log 2>&1 & exec env DISPLAY=:1 python3 run.py"
