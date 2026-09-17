@@ -1,3 +1,4 @@
+import asyncio
 import pygame
 import os
 from enemies.zombie import Zombie
@@ -62,7 +63,7 @@ class Game:
         self.background = pygame.image.load("././sprites/background.png")
         self.background = pygame.transform.scale(self.background, (self.width, self.height))
         self.timer = time.time()
-        self.life_font = pygame.font.SysFont("comicsans", 65)
+        self.life_font = pygame.font.Font(None, 65)
         self.selected_tower = None
         self.menu = VerticalMenu(60, 250, side_img)
         self.menu.add_button(buy_turret, "buy_turret", 400)
@@ -101,16 +102,12 @@ class Game:
                     self.current_wave[x] = self.current_wave[x] - 1
                     break
 
-    def run(self):
-        run = True
+    async def run(self):
         clock = pygame.time.Clock()
-        while run:
+        while True:
             clock.tick(60)
             if self.won:
-                from menus.win_menu import WinMenu
-                winMenu = WinMenu(self.win)
-                winMenu.run()
-                run = False
+                return "win"
 
 
             if self.pause == False:
@@ -141,7 +138,7 @@ class Game:
             # main event loop
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    run = False
+                    return "quit"
 
                 if event.type == pygame.MOUSEBUTTONUP:
                     # if you're moving an object and click
@@ -228,12 +225,13 @@ class Game:
 
                 # if you lose
                 if self.lives <= 0:
-                    pygame.time.wait(1000)
-                    from menus.main_menu import MainMenu
-                    mainMenu = MainMenu(self.win)
-                    mainMenu.run()
+                    await asyncio.sleep(1)
+                    return "menu"
 
             self.draw()
+            # Let the browser refresh and handle JavaScript events when this
+            # loop is compiled to WebAssembly by Pygbag.
+            await asyncio.sleep(0)
 
 
     def draw(self):

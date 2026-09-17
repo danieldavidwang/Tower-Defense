@@ -99,7 +99,7 @@ class Menu:
         self.buttons = []
         self.items = 0
         self.bg = img
-        self.font = pygame.font.SysFont("comicsans", 25)
+        self.font = pygame.font.Font(None, 25)
         self.tower = tower
 
     def add_button(self, img, name):
@@ -169,7 +169,7 @@ class VerticalMenu(Menu):
         self.buttons = []
         self.items = 0
         self.bg = img
-        self.font = pygame.font.SysFont("comicsans", 25)
+        self.font = pygame.font.Font(None, 25)
 
     def add_button(self, img, name, cost):
         """

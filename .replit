@@ -10,6 +10,15 @@ guessImports = true
 packageSearch = true
 enabledForHosting = false
 
+[deployment]
+build = "python3 -m pip install -r requirements-web.txt && python3 -m pygbag --build --width 900 --height 700 --title 'Tower Defense' --ume_block 0 ."
+run = ["python3", "-m", "http.server", "8080", "--directory", "build/web", "--bind", "0.0.0.0"]
+deploymentTarget = "cloudrun"
+
+[[ports]]
+localPort = 8080
+externalPort = 80
+
 [workflows]
 runButton = "Project"
 

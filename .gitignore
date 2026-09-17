@@ -2,6 +2,9 @@
 __pycache__/
 *.py[cod]
 
+# Generated Pygbag browser bundle
+build/
+
 # Virtual environments
 .venv/
 venv/
