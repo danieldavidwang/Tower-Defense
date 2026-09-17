@@ -1,0 +1,10 @@
+entrypoint = "run.py"
+run = "python3 -m pip install -q -r requirements.txt && python3 run.py"
+
+[packager]
+language = "python3"
+
+[packager.features]
+guessImports = true
+packageSearch = true
+enabledForHosting = false
