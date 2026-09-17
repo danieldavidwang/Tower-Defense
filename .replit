@@ -9,3 +9,18 @@ language = "python3"
 guessImports = true
 packageSearch = true
 enabledForHosting = false
+
+[workflows]
+runButton = "Run Tower Defense"
+
+[[workflows.workflow]]
+name = "Run Tower Defense"
+author = "agent"
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python3 run.py"
+
+[workflows.workflow.metadata]
+outputType = "vnc"
