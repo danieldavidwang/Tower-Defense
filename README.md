@@ -4,6 +4,14 @@ A desktop tower-defense game built with Python and Pygame. Place and upgrade
 different towers, manage your resources, and defend the path across 13 waves of
 zombies, ghosts, and wizards.
 
+## Play on Replit
+
+### [▶ Run Tower Defense on Replit](https://replit.com/@DanielWang75/Tower-Defense)
+
+Open the project, click **Run**, and play the game in the **VNC** pane.
+
+![Tower Defense title screen running on Replit](docs/tower-defense-demo.webp)
+
 ## Run locally
 
 Python 3.10 or newer is recommended.
