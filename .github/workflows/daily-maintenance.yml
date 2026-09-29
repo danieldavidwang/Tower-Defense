@@ -1,10 +1,6 @@
 name: Daily Repository Maintenance
 
 on:
-  schedule:
-    # GitHub Actions cron uses UTC.
-    # Runs three times per day: 13:00, 18:00, and 23:00 UTC.
-    - cron: "0 13,18,23 * * *"
   workflow_dispatch:
 
 permissions:
