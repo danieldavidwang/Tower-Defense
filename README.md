@@ -8,20 +8,11 @@ ghosts, and wizards.
 
 ### [Play Tower Defense](https://danieldavidwang.github.io/Tower-Defense/)
 
-No installation or Replit account is required. The game is compiled for the
-browser with [Pygbag](https://pygame-web.github.io/) and deployed automatically
-with GitHub Pages.
+No installation is required. The game is compiled for the browser with
+[Pygbag](https://pygame-web.github.io/) and deployed automatically with GitHub
+Pages whenever `main` is updated.
 
 ![Tower Defense title screen](docs/tower-defense-demo.webp)
-
-## Open the project on Replit
-
-### [Open Tower Defense on Replit](https://replit.com/@DanielWang75/Tower-Defense)
-
-The Replit project is the development environment. Its **Run** button opens the
-desktop version in a VNC pane. Visitors who want their own editable copy can
-select **Remix**. The browser link above is the easiest way to play without
-seeing or editing the source code.
 
 ## Run locally
 
